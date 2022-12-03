@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Dimensions, View } from 'react-native';
+import { ActivityIndicator, Dimensions, StatusBar, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,6 +25,8 @@ export const HomeScreen = () => {
 
   return (
     <ScrollView>
+      <StatusBar barStyle={'dark-content'} animated={true} />
+
       <View style={{ marginTop: top + 20 }}>
         <View
           style={{

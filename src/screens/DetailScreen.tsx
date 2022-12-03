@@ -9,6 +9,7 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { RootStackParams } from '../navigation/Navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -28,6 +29,7 @@ export const DetailScreen = ({ route, navigation }: Props) => {
 
   return (
     <ScrollView>
+      <StatusBar barStyle={'light-content'} animated={true} />
       <View style={styles.imageContainer}>
         <View style={styles.imageBorder}>
           <Image source={{ uri }} style={styles.posterImage} />
