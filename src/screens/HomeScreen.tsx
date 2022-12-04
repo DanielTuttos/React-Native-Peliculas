@@ -7,6 +7,7 @@ import { GradientBackground } from '../components/GradientBackground';
 import { HorizontalSlider } from '../components/HorizontalSlider';
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
+import ImageColors from 'react-native-image-colors';
 
 const { width: windowWidth } = Dimensions.get('window');
 
@@ -14,6 +15,16 @@ export const HomeScreen = () => {
   const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
 
   const { top } = useSafeAreaInsets();
+  const getPosterColors = async (index: number) => {
+    const movie = nowPlaying[index];
+    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const result = await ImageColors.getColors(uri, {
+      fallback: '#ffffff',
+      cache: true,
+      key: 'unique_key',
+    });
+    console.log(result);
+  };
 
   if (isLoading) {
     return (
@@ -53,6 +64,7 @@ export const HomeScreen = () => {
               }}
               data={nowPlaying}
               renderItem={({ item }) => <MoviePoster movie={item} />}
+              onSnapToItem={index => getPosterColors(index)}
             />
           </View>
 

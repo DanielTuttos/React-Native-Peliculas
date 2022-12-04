@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import movieDb from '../api/movieDB';
-import { Movie, MovieDBMoviesResponse } from '../interfaces/movieInterfaces';
+import { Movie, MovieDBResponse } from '../interfaces/movieInterfaces';
 
 interface MoviesState {
   nowPlaying: Movie[];
@@ -20,11 +20,10 @@ export const useMovies = () => {
 
   const getMovies = async () => {
     try {
-      const nowPlayingPromise =
-        movieDb.get<MovieDBMoviesResponse>('/now_playing');
-      const popularPromise = movieDb.get<MovieDBMoviesResponse>('/popular');
-      const topRatedPromise = movieDb.get<MovieDBMoviesResponse>('/top_rated');
-      const upcommingPromise = movieDb.get<MovieDBMoviesResponse>('/upcoming');
+      const nowPlayingPromise = movieDb.get<MovieDBResponse>('/now_playing');
+      const popularPromise = movieDb.get<MovieDBResponse>('/popular');
+      const topRatedPromise = movieDb.get<MovieDBResponse>('/top_rated');
+      const upcommingPromise = movieDb.get<MovieDBResponse>('/upcoming');
 
       const resp = await Promise.all([
         nowPlayingPromise,
